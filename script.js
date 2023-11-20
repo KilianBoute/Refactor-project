@@ -45,7 +45,7 @@ inputField.addEventListener('keyup', function(event) {
             if(data.error) {
                 // stop the event from continuing the code if there is an error
                 return alert("Hey are you sure you are not holding up your map upside down?");
-                console.log("check if code stops");
+
             } else {
                 // continue with the code if there are no errors
                 const container = document.querySelector(".container");
