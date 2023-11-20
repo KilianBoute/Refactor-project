@@ -1,7 +1,6 @@
 // Check if script is read by the browser!
 console.log("script is running")
 // import data from different files
-import WMO_CODES from "./wmo_codes.js";
 import API from "./config.js";
 
 // Getting my button element
@@ -18,7 +17,7 @@ const weekdays2 = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 // Check if weekdays are correctly displayed
 console.log(weekdays);
 // check if API is correctly imported
-console.log(API)
+console.log(API);
 
 // add eventlistener to input field
 inputField.addEventListener('keyup', function(event) {
@@ -42,12 +41,11 @@ inputField.addEventListener('keyup', function(event) {
             // Check if data is received
             console.log(data)
 
-
             // check if the data is not giving back an error
             if(data.error) {
                 // stop the event from continuing the code if there is an error
-                return alert("Hey are you sure you are not holding up your map upside down?")
-                console.log("check if code stops")
+                return alert("Hey are you sure you are not holding up your map upside down?");
+                console.log("check if code stops");
             } else {
                 // continue with the code if there are no errors
                 const container = document.querySelector(".container");
