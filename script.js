@@ -151,7 +151,6 @@ inputField.addEventListener('keyup', function(event) {
                 }
             }
         }).catch(err => {
-            //not working
             // alert("Hey are you sure you are not holding up your map upside down?")
         })
     }
@@ -167,8 +166,7 @@ button.addEventListener('click', function() {
     .then(data => {
         console.log(data)
         if(data.error) {
-            return alert("Hey are you sure you are not holding up your map upside down?")
-            console.log("check if code stops")
+            return alert("Hey are you sure you are not holding up your map upside down?");
         } else {
             const container = document.querySelector(".container");
             while (container.lastChild) {
