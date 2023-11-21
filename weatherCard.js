@@ -1,29 +1,8 @@
-import API from "./config.js";
-const cardContainer = document.querySelector(".container");
-// Amount of days forecast should be (max 7)
-const DAY_AMOUNT = 5;
-
-async function getWeatherData(cityInput) {
-    try {
-        const response = await fetch("http://api.weatherapi.com/v1/forecast.json?key=" + API.key + "&q=" + cityInput + "&days=7&aqi=no&alerts=no");
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        alert("Hey are you sure you are not holding up your map upside down?");
-    };
-}
-
-const emptyCardContainer = () => {
-    while (cardContainer.lastChild) {
-        cardContainer.removeChild(cardContainer.lastChild);
-    };
-}
-
-const displayWeatherForDay = (data, index) => {
+const displayWeatherForDay = (data, index, cardContainer) => {
     const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const date = new Date()
     const dayOfTheWeek = weekdays[(date.getDay() + index) % 7]
-
+    
     const card = document.createElement('div');
     card.classList.add("card");
 
@@ -83,39 +62,4 @@ const displayWeatherForDay = (data, index) => {
     minMaxTemperatures.appendChild(maxTemp);
 }
 
-const handleWeatherData = (weatherData) => {
-    const cityNameContainer = document.querySelector('.city-info');
-    cityNameContainer.textContent = weatherData.location.name + ", " + weatherData.location.country;
-    for (let i = 0; i < DAY_AMOUNT; i++) {
-        displayWeatherForDay(weatherData, i);
-    }
-}
-
-async function handleSearchSubmit() {
-    const cityInput = document.getElementById('cityName').value.trim();
-    if (cityInput) {
-        const weatherData = await getWeatherData(cityInput);
-        emptyCardContainer();
-        handleWeatherData(weatherData);
-    } else {
-        alert('Please enter a value first');
-    }
-}
-
-const setEventListeners = () => {
-
-    const submitButton = document.querySelector('#submit-search');
-    const inputField = document.querySelector('#cityName');
-
-    inputField.addEventListener('keyup', (event) => {
-        if (event.code === "Enter") {
-            handleSearchSubmit();
-        }
-    });
-    submitButton.addEventListener('click', () => {
-        handleSearchSubmit();
-    });
-
-}
-
-setEventListeners();
+export default displayWeatherForDay;
