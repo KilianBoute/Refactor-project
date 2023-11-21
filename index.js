@@ -14,7 +14,7 @@ const handleWeatherData = (weatherData) => {
     }
 }
 
-async function handleSearchSubmit() {
+const handleSearchSubmit = async () => {
     const cityInput = document.getElementById('cityName').value.trim();
     if (cityInput) {
         const weatherData = await getWeatherData(cityInput);

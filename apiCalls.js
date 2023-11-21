@@ -1,7 +1,7 @@
 
 import API from "./config.js";
 
-async function getWeatherData(cityInput) {
+const  getWeatherData = async (cityInput) => {
     try {
         const response = await fetch("http://api.weatherapi.com/v1/forecast.json?key=" + API.key + "&q=" + cityInput + "&days=7&aqi=no&alerts=no");
         const data = await response.json();
