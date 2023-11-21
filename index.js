@@ -1,27 +1,10 @@
 
 import displayWeatherForDay from "./weatherCard.js";
+import getWeatherData from "./apiCalls.js";
+import emptyContainer from "./emptyContainer.js";
 const cardContainer = document.querySelector(".container");
 const DAY_AMOUNT = 5;
 
-import API from "./config.js";
-
-async function getWeatherData(cityInput) {
-    try {
-        const response = await fetch("http://api.weatherapi.com/v1/forecast.json?key=" + API.key + "&q=" + cityInput + "&days=7&aqi=no&alerts=no");
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        alert("Hey are you sure you are not holding up your map upside down?");
-    };
-}
-
-export default getWeatherData;
-
-const emptyCardContainer = () => {
-    while (cardContainer.lastChild) {
-        cardContainer.removeChild(cardContainer.lastChild);
-    };
-}
 
 const handleWeatherData = (weatherData) => {
     const cityNameContainer = document.querySelector('.city-info');
@@ -35,7 +18,7 @@ async function handleSearchSubmit() {
     const cityInput = document.getElementById('cityName').value.trim();
     if (cityInput) {
         const weatherData = await getWeatherData(cityInput);
-        emptyCardContainer();
+        emptyContainer(cardContainer);
         handleWeatherData(weatherData);
     } else {
         alert('Please enter a value first');
